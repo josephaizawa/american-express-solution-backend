@@ -2,20 +2,18 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import knex from "knex";
-import warehouses from "./routes/warehouses.js";
-import inventory from "./routes/inventory.js";
-import ApiRouter from "./routes/api.js";
+import users from "./routes/users.js";
+
 const app = express();
 app.use(express.json());
 dotenv.config();
 
 const port = process.env.PORT || 8080;
 console.log(process.env.DB_LOCAL_PASSWORD);
-app.use(cors(/*{ origin: process.env.FRONT_END }*/));
+app.use(cors());
 
-app.use("/warehouses", warehouses);
-app.use("/inventory", inventory);
-app.use("/api",ApiRouter);
+app.use("/users", users);
+
 app.listen(port, () => {
   console.log(`App is running on port: ${port}`);
 });
